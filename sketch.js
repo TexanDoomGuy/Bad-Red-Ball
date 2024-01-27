@@ -158,12 +158,15 @@ function draw() {
   //player.bounciness = 0;  dont use, doesn't make the jump code work
   //a++
 
-  if (player.y >= 800) {
+  if (player.y >= 2000) {
     player.x = 600
-    player.y = 300
+    player.y = -2000
+    follower.y = -2200
+    follower.x = 600
   }
   if (player.x > 1000 & peepee != true){
     ground7.collider = "None"
+    ground6.collider = "None"
     peepee = true
     for (let i = 0; i < 45; i++) {
       a ++
@@ -226,7 +229,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 2.2", windowWidth- 100, 10, 200, 200)
+  text("version 2.3", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
   //text("Camera x = "+camera(),10,360,200,200)
