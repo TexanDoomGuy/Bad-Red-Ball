@@ -13,7 +13,7 @@ let img4
 let img5
 let ground5
 var peepee
-var curentlevel
+var currentlevel
 var b
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
@@ -25,7 +25,7 @@ function preload() {
 
 function setup() {
 
-  curentlevel = "tutorial"
+  currentlevel = "Tutorial"
   world.gravity.y = 10;
   //createCanvas(1347, 877);
   createCanvas();
@@ -125,19 +125,22 @@ function setup() {
 }
 
 function level1() {
-  ground.remove()
-  finish1.remove()
-  slidin.remove()
-  tutorial.remove()
-  buttonprompt.remove()
-  buttonprompt2.remove()
-  ground = new Sprite([
-    [100,100],
-    [-100,100]
-  ])
-  ground.collider = "static"
-
-
+  if (currentlevel = "Tutorial") {
+      console.log("Loading level 1!")
+      console.log("Todo, finish level 1")
+      ground.remove()
+      finish1.remove()
+      slidin.remove()
+      tutorial.remove()
+      buttonprompt.remove()
+      buttonprompt2.remove()
+      ground = new Sprite([
+        [100,100],
+        [-100,100]
+      ])
+      ground.collider = "static"
+    }
+    currentlevel = "Level 1"
 
   // ground = ground
   // ground2 = cool surface (ground)
@@ -154,6 +157,11 @@ function draw() {
   ground.friction = 1;
   //player.bounciness = 0;  dont use, doesn't make the jump code work
   //a++
+
+  if (player.y >= 800) {
+    player.x = 600
+    player.y = 300
+  }
   if (player.x > 1000 & peepee != true){
     ground7.collider = "None"
     peepee = true
@@ -197,10 +205,6 @@ function draw() {
     } else if (player.colliding(ground5) >= 1) {
       player.vel.y = -5
     }
-      if (player.y >= 800) {
-        player.x = 600
-        player.y = 300
-      }
 
       if (player.vel.y < 0.001 & player.vel.y > 0.01) {
         player.vel.t = 0.4
@@ -222,7 +226,9 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  // text("a = ) = " +a, 10, 510, 200, 200)
+  text("version 2.2", windowWidth- 100, 10, 200, 200)
+  text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
+  text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
   //text("Camera x = "+camera(),10,360,200,200)
 
 }
@@ -237,4 +243,4 @@ function draw() {
   // ground7 = barrier
 
 
-// todo: make a level loading system
+// todo: make an actual level 1
