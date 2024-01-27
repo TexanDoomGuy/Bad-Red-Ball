@@ -13,6 +13,8 @@ let img4
 let img5
 let ground5
 var peepee
+var curentlevel
+var b
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = ("pressarrowkeystomove.png")
@@ -22,6 +24,8 @@ function preload() {
 }
 
 function setup() {
+
+  curentlevel = "tutorial"
   world.gravity.y = 10;
   //createCanvas(1347, 877);
   createCanvas();
@@ -40,7 +44,7 @@ function setup() {
   ])
   ground5 = new Sprite([
     [100, 450],
-    [-28300, 450]
+    [-500, 450],
   ])
   ground6 = new Sprite([
     [900, 415],
@@ -54,6 +58,12 @@ function setup() {
   ground4 = new Sprite([
     [1250, 300], [1750, 345]
   ])
+  finish1 = new Sprite([
+    [-500, 450],
+    [-500, 250]
+  ])
+
+  finish1.collider = "static";
   ground6.collider = "static"
   ground4.collider = "static"
   ground3.collider = "static"
@@ -113,6 +123,30 @@ function setup() {
   slidin.y = 300
   a = 45
 }
+
+function level1() {
+  ground.remove()
+  finish1.remove()
+  slidin.remove()
+  tutorial.remove()
+  buttonprompt.remove()
+  buttonprompt2.remove()
+  ground = new Sprite([
+    [100,100],
+    [-100,100]
+  ])
+  ground.collider = "static"
+
+
+
+  // ground = ground
+  // ground2 = cool surface (ground)
+  // ground3 = ground
+  // ground4 = cool surface (ground)
+  // ground5 = ground
+  // ground6 = barrier 
+  // ground7 = barrier
+}
 function draw() {
   follower.moveTowards(player)
   camera.x = follower.x
@@ -137,6 +171,7 @@ function draw() {
   ground5.color = "RGB(255,255,0)"
   ground6.color = "RGB(255,0,0)"
   ground7.color = "RGB(255,0,0)"
+  finish1.color = "RGB(136, 38, 255)"
 
   if (kb.pressing("left")) {
     player.vel.x = player.vel.x - 0.50;
@@ -172,27 +207,34 @@ function draw() {
       }
   }
 
+  if(player.colliding(finish1) >= 1) {
+    level1()
+  }
   player.y = player.y + 0
   player.x = player.x + 0
-  text("arrow keys to move, and z to jump", 1300, 10, 500, 500)
   text("player.x.vel = " + Math.round(player.vel.x), 10, 10, 200, 200);
   text("player.y.vel = " + Math.round(player.vel.y), 10, 60, 200, 200);
   text("player.rotation = " + Math.round(player.rotation), 10, 110, 200, 200);
   text("player.x = " + Math.round(player.x), 10, 160, 200, 200);
   text("player.y = " + Math.round(player.y), 10, 210, 200, 200);
-  text("player.colliding(ground) = " + player.colliding(ground), 10, 260, 200, 200)
-  text("player.colliding(ground2) = " + player.colliding(ground2), 10, 310, 200, 200)
-  text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
-  text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
-  text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("a = ) = " +a, 10, 510, 200, 200)
+  // text("player.colliding(ground) = " + player.colliding(ground), 10, 260, 200, 200)
+  // text("player.colliding(ground2) = " + player.colliding(ground2), 10, 310, 200, 200)
+  // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
+  // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
+  // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
+  // text("a = ) = " +a, 10, 510, 200, 200)
   //text("Camera x = "+camera(),10,360,200,200)
+
 }
-function keyPressed() {
-  if (keyCode == 81) {
-    player.x = 600
-    player.y = 300
-  }
-}
+
+
+  // ground = ground
+  // ground2 = cool surface (ground)
+  // ground3 = ground
+  // ground4 = cool surface (ground)
+  // ground5 = ground
+  // ground6 = barrier 
+  // ground7 = barrier
+
 
 // todo: make a level loading system
