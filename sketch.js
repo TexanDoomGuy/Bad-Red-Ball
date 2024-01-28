@@ -29,7 +29,6 @@ function preload() {
 // The higher this value, the less the fps will reflect temporary variations
 // A value of 1 will only keep the last value
 function setup() {
-  gameLoop()
   currentlevel = "Tutorial"
   world.gravity.y = 10;
   //createCanvas(1347, 877);
@@ -294,9 +293,6 @@ function onKeyPressed(){
 }
 }
 
-
-
-
   // ground = ground
   // ground2 = cool surface (ground)
   // ground3 = ground
@@ -304,6 +300,3 @@ function onKeyPressed(){
   // ground5 = ground
   // ground6 = barrier 
   // ground7 = barrier
-
-
-// todo: make an actual level 1
