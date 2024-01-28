@@ -173,14 +173,15 @@ function level1() {
       var tempj
       tempj = 230
       ground8 = new Sprite([
-        [1250, tempj], 
-        [1750, tempj+45]
+        [1250, 230], 
+        [1735, 230+30]
       ])
   }
     ground3.collider = "static"
     ground8.collider = "static"
     ground5.collider = "static"
     ground6.collider = "static"
+    ground8.color = "RGB(0,0,255)";
     ground7.collider = "static"
     ground.collider = "static"
     currentlevel = "Level 1"
@@ -262,6 +263,8 @@ function draw() {
       player.vel.y = -5
     } else if (player.colliding(ground5) >= 1) {
       player.vel.y = -5
+    } else if (player.colliding(ground8) >= 1) {
+      player.vel.y = -5
     }
 
       if (player.vel.y < 0.001 & player.vel.y > 0.01) {
@@ -285,7 +288,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 3.01", windowWidth- 100, 10, 200, 200)
+  text("version 3.01", windowWidth- 110, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
 function onKeyPressed(){
