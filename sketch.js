@@ -17,6 +17,7 @@ var currentlevel
 var b
 let img6
 let ground6
+let button4
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = ("pressarrowkeystomove.png")
@@ -25,10 +26,38 @@ function preload() {
   img5 = ("slidin2.png")
   img6 = ("arrow.png")
 }
-
-// The higher this value, the less the fps will reflect temporary variations
-// A value of 1 will only keep the last value
+console.log("///////")
+console.log("loading")
+console.log("///////")
 function setup() {
+  button1 = new Sprite([
+    [455,475],
+    [450,475],
+    [450,495],
+  ])
+  button2 = new Sprite([
+    [525,495],
+    [525,475],
+    [520,475]
+  ])
+  button3 = new Sprite ([
+    [450,495],
+    [525,495]
+  ])
+  button3.collider = "static"
+  button2.collider = "static"
+  button4 = new Sprite()
+  button4.h = 7
+  button4.w = 70
+  button4.x = 488
+  button4.y = 490
+  button1.color = "RGB(153, 153, 153)"
+  button2.color = "RGB(153, 153, 153)"
+  button3.color = "RGB(153, 153, 153)"
+  button4.color = "RGB(255,0,0)"
+  button1.collider = "static"
+  button4.collider = "dynamic"
+
   currentlevel = "Tutorial"
   world.gravity.y = 10;
   //createCanvas(1347, 877);
@@ -66,7 +95,7 @@ function setup() {
     [-500, 450],
     [-500, 250]
   ])
-
+  button4.mass = 1
   finish1.collider = "static";
   ground6.collider = "static"
   ground4.collider = "static"
@@ -96,7 +125,7 @@ function setup() {
   textSize(20);
   player.vel.y = 10
   follower = new Sprite()
-  //follower.img = "IGNORE THIS.png"
+  follower.img = "IGNORE THIS.png"
   follower.diameter = 1
   console.log("ignore the error, that's suppost to happen")
   follower.collider = "none"
@@ -127,6 +156,7 @@ function setup() {
   slidin.scale = 0.3
   slidin.y = 300
   a = 45
+  player.mass = 25
 }
 function level1() {
   print(player.colliding(finish1))
@@ -197,7 +227,8 @@ function level1() {
   // ground7 = barrier
   // ground8 = cool surface (ground)
 function draw() {
-
+  button4.bearing = -90;
+  button4.vel.y = -1
   follower.moveTowards(player)
   camera.x = follower.x
   camera.y = follower.y
@@ -289,8 +320,6 @@ function draw() {
   text("version 4", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
-function onKeyPressed(){
-}
 }
 
   // ground = ground
