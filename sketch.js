@@ -1,7 +1,7 @@
 let player;
 let ground;
 let ground2;
-let ground3
+let ground3;
 let img;
 var a
 var playery
@@ -15,12 +15,15 @@ let ground5
 var peepee
 var currentlevel
 var b
+let img6
+let ground6
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = ("pressarrowkeystomove.png")
   img3 = ("pressspace.png")
   img4 = ("tutorial1.png")
   img5 = ("slidin2.png")
+  img6 = ("arrow.png")
 }
 
 function setup() {
@@ -41,7 +44,7 @@ function setup() {
     [950, 700],
     [1400, 415],
     [1750, 415]
-  ])
+  ]);
   ground5 = new Sprite([
     [100, 450],
     [-500, 450],
@@ -123,8 +126,8 @@ function setup() {
   slidin.y = 300
   a = 45
 }
-
 function level1() {
+  print(player.colliding(finish1))
   if (currentlevel = "Tutorial") {
       console.log("Loading level 1!")
       console.log("Todo, finish level 1")
@@ -133,15 +136,49 @@ function level1() {
       slidin.remove()
       tutorial.remove()
       buttonprompt.remove()
+      ground3.remove()  
+      ground6.remove()
+      ground2.remove()
       buttonprompt2.remove()
+      let arrow = new Sprite()
+      arrow.img = img6
+      arrow.scale = 0.25
+      arrow.collider = "None"
+      arrow.x = -50
+      arrow.y = 450 
+      arrow.rotation = 90 
+      ground3 = new Sprite([
+        [100, 450],
+        [100, 700], 
+        [600, 700]
+      ]);
       ground = new Sprite([
-        [100,100],
-        [-100,100]
+        [200,100],
+        [100,100]
       ])
-      ground.collider = "static"
+      ground5.remove()
+      ground5 = new Sprite([
+        [-250, 450],
+        [100, 100]
+      ])
+      ground7 = new Sprite([
+        [-250, 450],
+        [-250, 250],
+      ])
+      ground6 = new Sprite([
+        [600, 700],
+        [600, 400]
+      ])
+    ground3.collider = "static"
+    ground5.collider = "static"
+    ground6.collider = "static"
+    ground7.collider = "static"
+    ground.collider = "static"
     }
     currentlevel = "Level 1"
 
+
+    // mabye a coin at 1745 300
   // ground = ground
   // ground2 = cool surface (ground)
   // ground3 = ground
@@ -157,12 +194,21 @@ function draw() {
   ground.friction = 1;
   //player.bounciness = 0;  dont use, doesn't make the jump code work
   //a++
-
   if (player.y >= 2000) {
     player.x = 600
-    player.y = -2000
+    player.y = 0
+    player.vel.x = 0
     follower.y = -2200
     follower.x = 600
+    if (currentlevel == "Level 1"){
+      finish1 = new Sprite([
+        [-250, 450],
+        [-250, 250],
+      ])
+      finish1.collider = "static"
+      ground7.remove()
+      player.x = 300
+    }
   }
   if (player.x > 1000 & peepee != true){
     ground7.collider = "None"
@@ -215,7 +261,8 @@ function draw() {
   }
 
   if(player.colliding(finish1) >= 1) {
-    level1()
+    if (currentlevel == "Tutorial"){
+    level1()}
   }
   player.y = player.y + 0
   player.x = player.x + 0
@@ -229,13 +276,15 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 2.3", windowWidth- 100, 10, 200, 200)
+  text("version 3", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
   //text("Camera x = "+camera(),10,360,200,200)
 
 }
+function onKeyPressed(){
 
+}
 
   // ground = ground
   // ground2 = cool surface (ground)
