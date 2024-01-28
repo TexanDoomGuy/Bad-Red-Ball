@@ -169,7 +169,15 @@ function level1() {
         [600, 700],
         [600, 400]
       ])
+      var tempj
+      tempj = 230
+      ground8 = new Sprite([
+        [1250, tempj], 
+        [1750, tempj+45]
+      ])
+  }
     ground3.collider = "static"
+    ground8.collider = "static"
     ground5.collider = "static"
     ground6.collider = "static"
     ground7.collider = "static"
@@ -180,13 +188,13 @@ function level1() {
 
     // mabye a coin at 1745 300
   // ground = ground
-  // ground2 = cool surface (ground)
+  // ground2 = cool jump surface (ground)
   // ground3 = ground
   // ground4 = cool surface (ground)
   // ground5 = ground
   // ground6 = barrier 
   // ground7 = barrier
-}
+  // ground8 = cool surface (ground)
 function draw() {
   follower.moveTowards(player)
   camera.x = follower.x
