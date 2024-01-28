@@ -96,7 +96,8 @@ function setup() {
   textSize(20);
   player.vel.y = 10
   follower = new Sprite()
-  follower.img = "IGNORE THIS.png"
+  //follower.img = "IGNORE THIS.png"
+  follower.diameter = 1
   console.log("ignore the error, that's suppost to happen")
   follower.collider = "none"
   buttonprompt = new Sprite()
@@ -285,7 +286,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 3.01", windowWidth- 100, 10, 200, 200)
+  text("version 4", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
 function onKeyPressed(){
