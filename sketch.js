@@ -26,8 +26,10 @@ function preload() {
   img6 = ("arrow.png")
 }
 
+// The higher this value, the less the fps will reflect temporary variations
+// A value of 1 will only keep the last value
 function setup() {
-
+  gameLoop()
   currentlevel = "Tutorial"
   world.gravity.y = 10;
   //createCanvas(1347, 877);
@@ -188,6 +190,7 @@ function level1() {
   // ground7 = barrier
 }
 function draw() {
+
   follower.moveTowards(player)
   camera.x = follower.x
   camera.y = follower.y
@@ -279,12 +282,12 @@ function draw() {
   text("version 3", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
-  //text("Camera x = "+camera(),10,360,200,200)
-
-}
 function onKeyPressed(){
-
 }
+}
+
+
+
 
   // ground = ground
   // ground2 = cool surface (ground)
