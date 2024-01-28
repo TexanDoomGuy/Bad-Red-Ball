@@ -285,6 +285,11 @@ function draw() {
   } if (kb.pressing("space")) {
     player.moveTowards(mouse);
   } if (kb.pressing("z")) {
+    if (currentlevel == "Level 1"){
+      if (player.colliding(ground8) >= 1) {
+      player.vel.y = -5
+      }
+    }
     if (player.colliding(ground) >= 1) {
       player.vel.y = -5
     } else if (player.colliding(ground2) >= 1) {
@@ -295,10 +300,7 @@ function draw() {
       player.vel.y = -5
     } else if (player.colliding(ground5) >= 1) {
       player.vel.y = -5
-    } else if (player.colliding(ground8) >= 1) {
-      player.vel.y = -5
     }
-
       if (player.vel.y < 0.001 & player.vel.y > 0.01) {
         player.vel.t = 0.4
       }
@@ -320,7 +322,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 4", windowWidth- 100, 10, 200, 200)
+  text("version 4.01", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
 }
