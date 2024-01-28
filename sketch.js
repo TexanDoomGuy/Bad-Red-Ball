@@ -30,34 +30,6 @@ console.log("///////")
 console.log("loading")
 console.log("///////")
 function setup() {
-  button1 = new Sprite([
-    [455,475],
-    [450,475],
-    [450,495],
-  ])
-  button2 = new Sprite([
-    [525,495],
-    [525,475],
-    [520,475]
-  ])
-  button3 = new Sprite ([
-    [450,495],
-    [525,495]
-  ])
-  button3.collider = "static"
-  button2.collider = "static"
-  button4 = new Sprite()
-  button4.h = 7
-  button4.w = 70
-  button4.x = 488
-  button4.y = 490
-  button1.color = "RGB(153, 153, 153)"
-  button2.color = "RGB(153, 153, 153)"
-  button3.color = "RGB(153, 153, 153)"
-  button4.color = "RGB(255,0,0)"
-  button1.collider = "static"
-  button4.collider = "dynamic"
-
   currentlevel = "Tutorial"
   world.gravity.y = 10;
   //createCanvas(1347, 877);
@@ -95,7 +67,7 @@ function setup() {
     [-500, 450],
     [-500, 250]
   ])
-  button4.mass = 1
+
   finish1.collider = "static";
   ground6.collider = "static"
   ground4.collider = "static"
@@ -227,9 +199,43 @@ function level1() {
   // ground6 = barrier 
   // ground7 = barrier
   // ground8 = cool surface (ground)
+var buttonexists
+
+function makebutton(){
+  button1 = new Sprite([
+    [455,475],
+    [450,475],
+    [450,495],
+  ])
+  button2 = new Sprite([
+    [525,495],
+    [525,475],
+    [520,475]
+  ])
+  button3 = new Sprite ([
+    [450,495],
+    [525,495]
+  ])
+  button3.collider = "static"
+  button2.collider = "static"
+  button4 = new Sprite()
+  button4.h = 7
+  button4.w = 70
+  button4.x = 488
+  button4.y = 490
+  button1.color = "RGB(153, 153, 153)"
+  button2.color = "RGB(153, 153, 153)"
+  button3.color = "RGB(153, 153, 153)"
+  button4.color = "RGB(255,0,0)"
+  button1.collider = "static"
+  button4.collider = "dynamic"
+  button4.mass = 1
+  buttonexists = 1
+}
+
 function draw() {
-  button4.bearing = -90;
-  button4.vel.y = -1
+  if (buttonexists == 1){
+  button4.vel.y = -1 }
   follower.moveTowards(player)
   camera.x = follower.x
   camera.y = follower.y
@@ -322,7 +328,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 4.01", windowWidth- 100, 10, 200, 200)
+  text("version 4.02", windowWidth- 100, 10, 200, 200)
   text("github.com/TexanDoomGuy/Bad-Red-Ball-2", windowWidth- 390, 60, 200, 200)
   text("Level: "+currentlevel, windowWidth- 130, 110, 200, 200)
 }
