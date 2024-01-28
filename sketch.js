@@ -204,14 +204,15 @@ function level1() {
       var tempj
       tempj = 230
       ground8 = new Sprite([
-        [1250, tempj], 
-        [1750, tempj+45]
+        [1250, 230], 
+        [1735, 230+30]
       ])
   }
     ground3.collider = "static"
     ground8.collider = "static"
     ground5.collider = "static"
     ground6.collider = "static"
+    ground8.color = "RGB(0,0,255)";
     ground7.collider = "static"
     ground.collider = "static"
     currentlevel = "Level 1"
@@ -293,6 +294,8 @@ function draw() {
     } else if (player.colliding(ground4) >= 1) {
       player.vel.y = -5
     } else if (player.colliding(ground5) >= 1) {
+      player.vel.y = -5
+    } else if (player.colliding(ground8) >= 1) {
       player.vel.y = -5
     }
 
