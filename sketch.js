@@ -129,13 +129,14 @@ function setup() {
   slidin.scale = 0.3;
   slidin.y = 300;
   a = 45;
-  player.mass = 25;
+  player.mass = 15;
 }
 function level1() {
+  makebutton();
   print(player.colliding(finish1));
   if ((currentlevel = "Tutorial")) {
     console.log("Loading level 1!");
-    console.log("Todo, finish level 1");
+    //console.log("Todo, finish level 1"); i finished level 1
     ground.remove();
     finish1.remove();
     slidin.remove();
@@ -203,27 +204,29 @@ function level1() {
 var buttonexists;
 
 function makebutton() {
+  var buttonx = 400;
+  var buttony = 675;
   button1 = new Sprite([
-    [455, 475],
-    [450, 475],
-    [450, 495],
+    [buttonx + 5, buttony],
+    [buttonx, buttony],
+    [buttonx, buttony + 20],
   ]);
   button2 = new Sprite([
-    [525, 495],
-    [525, 475],
-    [520, 475],
+    [buttonx + 75, buttony + 20],
+    [buttonx + 75, buttony],
+    [buttonx + 70, buttony],
   ]);
   button3 = new Sprite([
-    [450, 495],
-    [525, 495],
+    [buttonx, buttony + 20],
+    [buttonx + 75, buttony + 20],
   ]);
   button3.collider = "static";
   button2.collider = "static";
   button4 = new Sprite();
   button4.h = 7;
   button4.w = 70;
-  button4.x = 488;
-  button4.y = 490;
+  button4.x = buttonx + 33;
+  button4.y = buttony + 15;
   button1.color = "RGB(153, 153, 153)";
   button2.color = "RGB(153, 153, 153)";
   button3.color = "RGB(153, 153, 153)";
@@ -237,6 +240,10 @@ function makebutton() {
 function draw() {
   if (buttonexists == 1) {
     button4.vel.y = -1;
+    if (button4.colliding(button3)) {
+      console.log("button pressed!");
+      console.log("ToDo, made button actualy do somthing");
+    }
   }
   follower.moveTowards(player);
   camera.x = follower.x;
@@ -334,7 +341,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 4.02", windowWidth - 100, 10, 200, 200);
+  text("version 4.1", windowWidth - 100, 10, 200, 200);
   text(
     "github.com/TexanDoomGuy/Bad-Red-Ball-2",
     windowWidth - 390,
