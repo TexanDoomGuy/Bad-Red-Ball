@@ -84,7 +84,7 @@ function setup() {
   player.vel.x = 1;
   player.scale = 1;
   player.diameter = 50;
-  player.rotationDrag = 5;
+  player.rotationDrag = 15;
   player.x = 575;
   player.y = 300;
 
