@@ -18,6 +18,11 @@ var b;
 let img6;
 let ground6;
 let button4;
+var timerValue = 0;
+var leveldone = 0;
+var buttonexists = 0;
+var intermissionSprExists = 0;
+var par;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = "pressarrowkeystomove.png";
@@ -30,6 +35,7 @@ console.log("///////");
 console.log("loading");
 console.log("///////");
 function setup() {
+  par = 6;
   currentlevel = "Tutorial";
   world.gravity.y = 10;
   //createCanvas(1347, 877);
@@ -68,6 +74,8 @@ function setup() {
     [-500, 450],
     [-500, 250],
   ]);
+
+  setInterval(timeIt, 1000);
 
   finish1.collider = "static";
   ground6.collider = "static";
@@ -129,10 +137,12 @@ function setup() {
   slidin.scale = 0.3;
   slidin.y = 300;
   a = 45;
+
   player.mass = 15;
 }
 function level1() {
-  makebutton();
+  timerValue = 0;
+  par = 5;
   print(player.colliding(finish1));
   if ((currentlevel = "Tutorial")) {
     console.log("Loading level 1!");
@@ -182,6 +192,14 @@ function level1() {
       [1735, 230 + 30],
     ]);
   }
+  function level2() {
+    makebutton();
+    console.log("Loading Level 2!");
+    if (currentlevel == "Level1") {
+      // finish
+      ground.remove();
+    }
+  }
   ground3.collider = "static";
   ground8.collider = "static";
   ground5.collider = "static";
@@ -190,6 +208,16 @@ function level1() {
   ground7.collider = "static";
   ground.collider = "static";
   currentlevel = "Level 1";
+}
+
+function intermission() {
+  if (currentlevel == "Tutorial") {
+    leveldone = 1;
+    setTimeout(function () {
+      level1();
+      leveldone = 0;
+    }, 3000);
+  }
 }
 
 // mabye a coin at 1745 300
@@ -201,40 +229,42 @@ function level1() {
 // ground6 = barrier
 // ground7 = barrier
 // ground8 = cool surface (ground)
-var buttonexists;
 
 function makebutton() {
-  var buttonx = 400;
-  var buttony = 675;
-  button1 = new Sprite([
-    [buttonx + 5, buttony],
-    [buttonx, buttony],
-    [buttonx, buttony + 20],
-  ]);
-  button2 = new Sprite([
-    [buttonx + 75, buttony + 20],
-    [buttonx + 75, buttony],
-    [buttonx + 70, buttony],
-  ]);
-  button3 = new Sprite([
-    [buttonx, buttony + 20],
-    [buttonx + 75, buttony + 20],
-  ]);
-  button3.collider = "static";
-  button2.collider = "static";
-  button4 = new Sprite();
-  button4.h = 7;
-  button4.w = 70;
-  button4.x = buttonx + 33;
-  button4.y = buttony + 15;
-  button1.color = "RGB(153, 153, 153)";
-  button2.color = "RGB(153, 153, 153)";
-  button3.color = "RGB(153, 153, 153)";
-  button4.color = "RGB(255,0,0)";
-  button1.collider = "static";
-  button4.collider = "dynamic";
-  button4.mass = 1;
-  buttonexists = 1;
+  if (buttonexists == 0) {
+    console.log("button made");
+    var buttonx = 400;
+    var buttony = 675;
+    button1 = new Sprite([
+      [buttonx + 5, buttony],
+      [buttonx, buttony],
+      [buttonx, buttony + 20],
+    ]);
+    button2 = new Sprite([
+      [buttonx + 75, buttony + 20],
+      [buttonx + 75, buttony],
+      [buttonx + 70, buttony],
+    ]);
+    button3 = new Sprite([
+      [buttonx, buttony + 20],
+      [buttonx + 75, buttony + 20],
+    ]);
+    button3.collider = "static";
+    button2.collider = "static";
+    button4 = new Sprite();
+    button4.h = 7;
+    button4.w = 70;
+    button4.x = buttonx + 33;
+    button4.y = buttony + 15;
+    button1.color = "RGB(153, 153, 153)";
+    button2.color = "RGB(153, 153, 153)";
+    button3.color = "RGB(153, 153, 153)";
+    button4.color = "RGB(255,0,0)";
+    button1.collider = "static";
+    button4.collider = "dynamic";
+    button4.mass = 1;
+    buttonexists = 1;
+  }
 }
 
 function draw() {
@@ -246,8 +276,10 @@ function draw() {
     }
   }
   follower.moveTowards(player);
-  camera.x = follower.x;
-  camera.y = follower.y;
+  if (intermissionSprExists == 0) {
+    camera.x = follower.x;
+    camera.y = follower.y;
+  }
   ground.friction = 1;
   //player.bounciness = 0;  dont use, doesn't make the jump code work
   //a++
@@ -257,6 +289,7 @@ function draw() {
     player.vel.x = 0;
     follower.y = -2200;
     follower.x = 600;
+    timerValue = 0;
     if (currentlevel == "Level 1") {
       finish1 = new Sprite([
         [-250, 450],
@@ -271,6 +304,7 @@ function draw() {
     ground7.collider = "None";
     ground6.collider = "None";
     peepee = true;
+
     for (let i = 0; i < 45; i++) {
       a++;
       ground2.y = 600;
@@ -326,7 +360,7 @@ function draw() {
 
   if (player.colliding(finish1) >= 1) {
     if (currentlevel == "Tutorial") {
-      level1();
+      intermission();
     }
   }
   player.y = player.y + 0;
@@ -336,12 +370,28 @@ function draw() {
   text("player.rotation = " + Math.round(player.rotation), 10, 110, 200, 200);
   text("player.x = " + Math.round(player.x), 10, 160, 200, 200);
   text("player.y = " + Math.round(player.y), 10, 210, 200, 200);
+  text("Time: " + timerValue, windowWidth / 2, 20);
   // text("player.colliding(ground) = " + player.colliding(ground), 10, 260, 200, 200)
   // text("player.colliding(ground2) = " + player.colliding(ground2), 10, 310, 200, 200)
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 4.1", windowWidth - 100, 10, 200, 200);
+  text("version 5", windowWidth - 100, 10, 200, 200);
+  if (leveldone == 1) {
+    fill(255, 255, 255);
+    rect(-2000, -100, 50);
+    camera.y = -2000;
+    camera.x = -100;
+    clear();
+    text(
+      "Your time was " + timerValue + " secconds",
+      windowWidth / 2,
+      windowHeight / 2 + 70
+    );
+    text("Par: " + par, windowWidth / 2, windowHeight / 2 + 140);
+    text(currentlevel + " completed!", windowWidth / 2, windowHeight / 2);
+    fill(0, 0, 0);
+  }
   text(
     "github.com/TexanDoomGuy/Bad-Red-Ball-2",
     windowWidth - 390,
@@ -350,6 +400,12 @@ function draw() {
     200
   );
   text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
+}
+
+function timeIt() {
+  if ((timerValue >= 0) & (leveldone == 0)) {
+    timerValue++;
+  }
 }
 
 // ground = ground
