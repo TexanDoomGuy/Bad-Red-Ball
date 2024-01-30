@@ -14,6 +14,7 @@ let img5;
 let ground5;
 var peepee;
 var currentlevel;
+let arrow;
 var b;
 let img6;
 let ground6;
@@ -23,6 +24,7 @@ var leveldone = 0;
 var buttonexists = 0;
 var intermissionSprExists = 0;
 var par;
+var buttonpressed = 0;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = "pressarrowkeystomove.png";
@@ -143,7 +145,6 @@ function setup() {
 function level1() {
   timerValue = 0;
   par = 5;
-  print(player.colliding(finish1));
   if ((currentlevel = "Tutorial")) {
     console.log("Loading level 1!");
     //console.log("Todo, finish level 1"); i finished level 1
@@ -156,7 +157,7 @@ function level1() {
     ground6.remove();
     ground2.remove();
     buttonprompt2.remove();
-    let arrow = new Sprite();
+    arrow = new Sprite();
     arrow.img = img6;
     arrow.scale = 0.25;
     arrow.collider = "None";
@@ -177,7 +178,7 @@ function level1() {
       [-250, 450],
       [100, 100],
     ]);
-    ground7 = new Sprite([
+    finish1 = new Sprite([
       [-250, 450],
       [-250, 250],
     ]);
@@ -185,36 +186,57 @@ function level1() {
       [600, 700],
       [600, 400],
     ]);
-    var tempj;
-    tempj = 230;
     ground8 = new Sprite([
       [1250, 230],
       [1735, 230 + 30],
     ]);
-  }
-  function level2() {
-    makebutton();
-    console.log("Loading Level 2!");
-    if (currentlevel == "Level1") {
-      // finish
-      ground.remove();
-    }
   }
   ground3.collider = "static";
   ground8.collider = "static";
   ground5.collider = "static";
   ground6.collider = "static";
   ground8.color = "RGB(0,0,255)";
-  ground7.collider = "static";
+  finish1.collider = "static";
   ground.collider = "static";
-  currentlevel = "Level 1";
+  currentlevel = "Level1";
+}
+function level2() {
+  timerValue = 0;
+  par = 4;
+  makebutton();
+  console.log("Loading Level2!");
+  if (currentlevel == "Level1") {
+    currentlevel = "level2";
+    arrow.remove();
+    ground3.remove();
+    ground.remove();
+    ground2.remove();
+    ground5.remove();
+    //ground6.remove();
+    ground8.remove();
+    finish1.remove();
+    ground4.remove();
+    ground7.remove();
+    ground3 = new Sprite([
+      [100, 450],
+      [100, 700],
+      [600, 700],
+    ]);
+    ground3.collider = "static";
+  }
 }
 
 function intermission() {
-  if (currentlevel == "Tutorial") {
-    leveldone = 1;
+  leveldone = 1;
+  player.x = 300;
+  player.y = 0;
+  if (leveldone == 1) {
     setTimeout(function () {
-      level1();
+      if (currentlevel == "Tutorial") {
+        level1();
+      } else if (currentlevel == "Level1") {
+        level2();
+      }
       leveldone = 0;
     }, 3000);
   }
@@ -267,12 +289,38 @@ function makebutton() {
   }
 }
 
+function summonFinish() {
+  ground3.remove();
+  ground3 = new Sprite([
+    [600, 700],
+    [100, 700],
+  ]);
+  finish1 = new Sprite([
+    [100, 700],
+    [100, 400],
+  ]);
+  ground3.collider = "static";
+  finish1.collider = "static";
+}
+
 function draw() {
   if (buttonexists == 1) {
-    button4.vel.y = -1;
-    if (button4.colliding(button3)) {
+    if (buttonpressed == 1) {
+      button4.vel.y = 0;
+    } else if (buttonpressed == 0) {
+      button4.vel.y = -1;
+    }
+    if (
+      button4.colliding(button3) &
+      (player.colliding(button4) >= 0) &
+      (buttonpressed == 0)
+    ) {
+      buttonpressed = 1;
       console.log("button pressed!");
-      console.log("ToDo, made button actualy do somthing");
+      summonFinish();
+    } else if (button4.colliding(button3) & (player.colliding(button4) == 1)) {
+      //buttonpressed = 0;
+      console.log("button unpressed!");
     }
   }
   follower.moveTowards(player);
@@ -284,31 +332,19 @@ function draw() {
   //player.bounciness = 0;  dont use, doesn't make the jump code work
   //a++
   if (player.y >= 2000) {
-    player.x = 600;
+    player.x = 300;
     player.y = 0;
     player.vel.x = 0;
     follower.y = -2200;
     follower.x = 600;
     timerValue = 0;
-    if (currentlevel == "Level 1") {
-      finish1 = new Sprite([
-        [-250, 450],
-        [-250, 250],
-      ]);
-      finish1.collider = "static";
-      ground7.remove();
-      player.x = 300;
-    }
   }
   if ((player.x > 1000) & (peepee != true)) {
-    ground7.collider = "None";
-    ground6.collider = "None";
+    ground7.remove();
+    ground6.remove();
     peepee = true;
-
-    for (let i = 0; i < 45; i++) {
-      a++;
-      ground2.y = 600;
-    }
+    a = 90;
+    ground2.y = 600;
   }
   ground2.rotation = a;
   background("rgb(99,99,99)");
@@ -359,9 +395,7 @@ function draw() {
   }
 
   if (player.colliding(finish1) >= 1) {
-    if (currentlevel == "Tutorial") {
-      intermission();
-    }
+    intermission();
   }
   player.y = player.y + 0;
   player.x = player.x + 0;
@@ -371,7 +405,7 @@ function draw() {
   text("player.x = " + Math.round(player.x), 10, 160, 200, 200);
   text("player.y = " + Math.round(player.y), 10, 210, 200, 200);
   text("Time: " + timerValue, windowWidth / 2, 20);
-  // text("player.colliding(ground) = " + player.colliding(ground), 10, 260, 200, 200)
+  text("buttonpressed = " + buttonpressed, 10, 260, 200, 200);
   // text("player.colliding(ground2) = " + player.colliding(ground2), 10, 310, 200, 200)
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
@@ -408,6 +442,12 @@ function timeIt() {
   }
 }
 
+function keyPressed() {
+  if (keyCode == 81) {
+    level1();
+    level2();
+  }
+}
 // ground = ground
 // ground2 = cool surface (ground)
 // ground3 = ground
