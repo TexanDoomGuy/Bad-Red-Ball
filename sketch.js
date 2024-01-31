@@ -201,7 +201,7 @@ function level1() {
 }
 function level2() {
   timerValue = 0;
-  par = 4;
+  par = 6;
   makebutton();
   console.log("Loading Level2!");
   if (currentlevel == "Level1") {
@@ -217,11 +217,22 @@ function level2() {
     ground4.remove();
     ground7.remove();
     ground3 = new Sprite([
-      [100, 450],
       [100, 700],
       [600, 700],
     ]);
+    ground4 = new Sprite([
+      [0, 500],
+      [350, 600],
+    ]);
+    ground9 = new Sprite([
+      [350, 500],
+      [350, 600],
+    ]);
+    ground9.collider = "static";
+    ground7.collider = "static";
     ground3.collider = "static";
+    ground4.collider = "static";
+    ground9.color = "RGB(255,0,0)";
   }
 }
 
@@ -250,12 +261,13 @@ function intermission() {
 // ground6 = barrier
 // ground7 = barrier
 // ground8 = cool surface (ground)
+// ground9 = barrier
 
 function makebutton() {
   if (buttonexists == 0) {
     console.log("button made");
-    var buttonx = 400;
-    var buttony = 675;
+    var buttonx = 100;
+    var buttony = 450;
     button1 = new Sprite([
       [buttonx + 5, buttony],
       [buttonx, buttony],
@@ -289,16 +301,20 @@ function makebutton() {
 }
 
 function summonFinish() {
-  ground3.remove();
-  ground3 = new Sprite([
-    [600, 700],
-    [100, 700],
-  ]);
+  // ground4 = new Sprite([
+  //   [0, 500],
+  //   [350, 600],
+  // ]);
   finish1 = new Sprite([
-    [100, 700],
-    [100, 400],
+    [-100, 450],
+    [-100, 550],
   ]);
-  ground3.collider = "static";
+  ground7 = new Sprite([
+    [0, 500],
+    [0, 400],
+  ]);
+  ground9.remove();
+  ground7.collider = "static";
   finish1.collider = "static";
 }
 
