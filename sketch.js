@@ -163,7 +163,6 @@ function level1() {
     arrow.collider = "None";
     arrow.x = -50;
     arrow.y = 450;
-    arrow.rotation = 90;
     ground3 = new Sprite([
       [100, 450],
       [100, 700],
@@ -348,6 +347,7 @@ function draw() {
   }
   ground2.rotation = a;
   background("rgb(99,99,99)");
+
   colorMode(RGB, 255);
   ground.color = "RGB(0,255,0)";
   ground2.color = "RGB(0,0,255)";
@@ -412,8 +412,10 @@ function draw() {
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
   text("version 5", windowWidth - 100, 10, 200, 200);
   if (leveldone == 1) {
-    fill(255, 255, 255);
-    rect(-2000, -100, 50);
+    let c = color(0, 0, 0);
+    fill(c);
+    noStroke();
+    square(-2000, -100, 50);
     camera.y = -2000;
     camera.x = -100;
     clear();
@@ -424,7 +426,6 @@ function draw() {
     );
     text("Par: " + par, windowWidth / 2, windowHeight / 2 + 140);
     text(currentlevel + " completed!", windowWidth / 2, windowHeight / 2);
-    fill(0, 0, 0);
   }
   text(
     "github.com/TexanDoomGuy/Bad-Red-Ball-2",
