@@ -410,7 +410,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 5", windowWidth - 100, 10, 200, 200);
+  text("version 6", windowWidth - 100, 10, 200, 200);
   if (leveldone == 1) {
     fill(255, 255, 255);
     rect(-2000, -100, 50);
