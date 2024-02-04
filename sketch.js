@@ -20,13 +20,16 @@ var b;
 let img6;
 let ground6;
 let button4;
+var deadlythingexists = 0;
 var timerValue = 0;
 var leveldone = 0;
 var buttonexists = 0;
 var intermissionSprExists = 0;
 var par;
+var deadlythingmovingup = 0;
 var buttonpressed = 0;
 let gjm;
+let deadlything;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = "pressarrowkeystomove.png";
@@ -40,6 +43,23 @@ console.log("///////");
 console.log("loading");
 console.log("///////");
 function setup() {
+  easteregg = new Sprite([
+    [-500, 1000],
+    [-600, 1000],
+    [-600, 800],
+    [-200, 800],
+    [-400, 800],
+    [-400, 1000],
+  ]);
+  easteregg2 = new Sprite([
+    [-600, 1100],
+    [-300, 1100],
+  ]);
+
+  easteregg.x = -2000;
+  easteregg2.x = -2000;
+  easteregg2.collider = "static";
+  easteregg.collider = "static";
   par = 6;
   currentlevel = "Tutorial";
   world.gravity.y = 10;
@@ -150,6 +170,8 @@ function level1() {
   par = 5;
   if ((currentlevel = "Tutorial")) {
     console.log("Loading level 1!");
+    player.y = 600;
+    player.x = 300;
     //console.log("Todo, finish level 1"); i finished level 1
     ground.remove();
     finish1.remove();
@@ -208,7 +230,7 @@ function level2() {
   makebutton();
   console.log("Loading Level2!");
   if (currentlevel == "Level1") {
-    currentlevel = "level2";
+    currentlevel = "Level2";
     arrow.remove();
     ground3.remove();
     ground.remove();
@@ -242,6 +264,57 @@ function level2() {
   }
 }
 
+function level3() {
+  timerValue = 0;
+  console.log("Loading level3");
+  if (currentlevel == "Level2") {
+    deadlything = new Sprite();
+    deadlything.w = 5;
+    deadlything.h = 100;
+    deadlything.color = "RGB(255,140,0)";
+    deadlythingexists = 1;
+    buttonexists = 0;
+    deadlything.y = 530;
+    deadlything.collider = "static";
+    deadlything.x = 550;
+    button1.remove();
+    button2.remove();
+    button3.remove();
+    button4.remove();
+    ground4.remove();
+    ground6.remove();
+    ground7.remove();
+    ground8.remove();
+    ground9.remove();
+    ground4 = new Sprite([
+      [700, 600],
+      [700, 200],
+    ]);
+    ground = new Sprite([
+      [0, 200],
+      [600, 200],
+    ]);
+    finish1 = new Sprite([
+      [0, 200],
+      [0, 100],
+    ]);
+    ground.collider = "static";
+    finish1.collider = "static";
+    ground4.collider = "static";
+    currentlevel = "Level3";
+  }
+}
+/* mabye a coin at 1745 300
+ground = ground
+ground2 = cool jump surface (ground)
+ground3 = ground
+ground4 = cool surface (ground)
+ground5 = ground
+ground6 = barrier
+ground7 = barrier
+ground8 = cool surface (ground)
+ ground9 = barrier */
+
 function intermission() {
   leveldone = 1;
   player.x = 300;
@@ -252,22 +325,15 @@ function intermission() {
         level1();
       } else if (currentlevel == "Level1") {
         level2();
+      } else if (currentlevel == "Level2") {
+        level3();
       }
+      player.y = 600;
+      player.x = 300;
       leveldone = 0;
     }, 3000);
   }
 }
-
-// mabye a coin at 1745 300
-// ground = ground
-// ground2 = cool jump surface (ground)
-// ground3 = ground
-// ground4 = cool surface (ground)
-// ground5 = ground
-// ground6 = barrier
-// ground7 = barrier
-// ground8 = cool surface (ground)
-// ground9 = barrier
 
 function makebutton() {
   if (buttonexists == 0) {
@@ -325,6 +391,9 @@ function summonFinish() {
 }
 
 function draw() {
+  if (deadlythingexists == 1) {
+    deadlything.y = cos(frameCount * 2.2) * 100 + 500;
+  }
   if (buttonexists == 1) {
     if (buttonpressed == 1) {
       button4.vel.y = 0;
@@ -354,7 +423,7 @@ function draw() {
   //a++
   if (player.y >= 2000) {
     player.x = 300;
-    player.y = 0;
+    player.y = 300;
     player.vel.x = 0;
     follower.y = -2200;
     follower.x = 600;
@@ -419,6 +488,12 @@ function draw() {
   if (player.colliding(finish1) >= 1) {
     intermission();
   }
+  if (deadlythingexists == 1) {
+    if (player.colliding(deadlything) >= 1) {
+      player.x = 300;
+      player.y = 600;
+    }
+  }
   player.y = player.y + 0;
   player.x = player.x + 0;
   text("player.x.vel = " + Math.round(player.vel.x), 10, 10, 200, 200);
@@ -432,7 +507,7 @@ function draw() {
   // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
   // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
   // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version 5", windowWidth - 100, 10, 200, 200);
+  text("version beta 6.1", windowWidth - 150, 10, 200, 200);
   if (leveldone == 1) {
     let c = color(0, 0, 0);
     fill(c);
@@ -467,19 +542,24 @@ function timeIt() {
 
 function keyPressed() {
   if (keyCode == 81) {
-    level1();
-    //    level2();
-  }
-  if (keyCode == 87) {
-    if (currentlevel == "Level1") {
-      var skillissue = 1;
-      //Zoe sucked and needs help
-      // ALL NEW GAME JOURNALIST MODE
-      gitgud = new Sprite();
-      gitgud.x = 200;
-      gitgud.y = 420;
-      gitgud.img = gjm;
-      gitgud.collider = "none";
+    if (currentlevel == "Tutorial") {
+      level1();
+    } else if (currentlevel == "Level1") {
+      level2();
+    } else if (currentlevel == "Level2") {
+      level3();
+    }
+    if (keyCode == 87) {
+      if (currentlevel == "Level1") {
+        var skillissue = 1;
+        //Zoe sucked and needs help
+        // ALL NEW GAME JOURNALIST MODE
+        gitgud = new Sprite();
+        gitgud.x = 200;
+        gitgud.y = 420;
+        gitgud.img = gjm;
+        gitgud.collider = "none";
+      }
     }
   }
 }
