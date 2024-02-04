@@ -7,6 +7,7 @@ var a;
 var playery;
 let jumpsound;
 let img2;
+var skillissue = 0;
 let follower;
 let img3;
 let img4;
@@ -217,6 +218,9 @@ function level2() {
     ground8.remove();
     finish1.remove();
     ground4.remove();
+    if (skillissue == 1) {
+      gitgud.remove();
+    }
     ground7.remove();
     ground3 = new Sprite([
       [100, 700],
@@ -468,6 +472,7 @@ function keyPressed() {
   }
   if (keyCode == 87) {
     if (currentlevel == "Level1") {
+      var skillissue = 1;
       //Zoe sucked and needs help
       // ALL NEW GAME JOURNALIST MODE
       gitgud = new Sprite();
