@@ -25,6 +25,7 @@ var buttonexists = 0;
 var intermissionSprExists = 0;
 var par;
 var buttonpressed = 0;
+let gjm;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = "pressarrowkeystomove.png";
@@ -32,6 +33,7 @@ function preload() {
   img4 = "tutorial1.png";
   img5 = "slidin2.png";
   img6 = "arrow.png";
+  gjm = "gjmarrowl1.png";
 }
 console.log("///////");
 console.log("loading");
@@ -462,7 +464,18 @@ function timeIt() {
 function keyPressed() {
   if (keyCode == 81) {
     level1();
-    level2();
+    //    level2();
+  }
+  if (keyCode == 87) {
+    if (currentlevel == "Level1") {
+      //Zoe sucked and needs help
+      // ALL NEW GAME JOURNALIST MODE
+      gitgud = new Sprite();
+      gitgud.x = 200;
+      gitgud.y = 420;
+      gitgud.img = gjm;
+      gitgud.collider = "none";
+    }
   }
 }
 // ground = ground
