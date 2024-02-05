@@ -549,6 +549,7 @@ function keyPressed() {
     } else if (currentlevel == "Level2") {
       level3();
     }
+  }
     if (keyCode == 87) {
       if (currentlevel == "Level1") {
         var skillissue = 1;
@@ -562,7 +563,6 @@ function keyPressed() {
       }
     }
   }
-}
 // ground = ground
 // ground2 = cool surface (ground)
 // ground3 = ground
