@@ -7,6 +7,7 @@ var a;
 var playery;
 let jumpsound;
 let img2;
+var skillissue = 0;
 let follower;
 let img3;
 let img4;
@@ -27,6 +28,7 @@ var intermissionSprExists = 0;
 var par;
 var deadlythingmovingup = 0;
 var buttonpressed = 0;
+let gjm;
 let deadlything;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
@@ -35,6 +37,7 @@ function preload() {
   img4 = "tutorial1.png";
   img5 = "slidin2.png";
   img6 = "arrow.png";
+  gjm = "gjmarrowl1.png";
 }
 console.log("///////");
 console.log("loading");
@@ -237,6 +240,9 @@ function level2() {
     ground8.remove();
     finish1.remove();
     ground4.remove();
+    if (skillissue == 1) {
+      gitgud.remove();
+    }
     ground7.remove();
     ground3 = new Sprite([
       [100, 700],
@@ -545,7 +551,19 @@ function keyPressed() {
       level3();
     }
   }
-}
+    if (keyCode == 87) {
+      if (currentlevel == "Level1") {
+        var skillissue = 1;
+        //Zoe sucked and needs help
+        // ALL NEW GAME JOURNALIST MODE
+        gitgud = new Sprite();
+        gitgud.x = 200;
+        gitgud.y = 420;
+        gitgud.img = gjm;
+        gitgud.collider = "none";
+      }
+    }
+  }
 // ground = ground
 // ground2 = cool surface (ground)
 // ground3 = ground
