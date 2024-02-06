@@ -10,6 +10,7 @@ let img2;
 var skillissue = 0;
 let follower;
 let img3;
+var debug = 0;
 let img4;
 let img5;
 let ground5;
@@ -351,6 +352,8 @@ function intermission() {
         level2();
       } else if (currentlevel == "Level2") {
         level3();
+      } else if (currentlevel == "Level3") {
+        level4();
       }
       player.y = 600;
       player.x = 300;
@@ -520,18 +523,28 @@ function draw() {
   }
   player.y = player.y + 0;
   player.x = player.x + 0;
-  text("player.x.vel = " + Math.round(player.vel.x), 10, 10, 200, 200);
-  text("player.y.vel = " + Math.round(player.vel.y), 10, 60, 200, 200);
-  text("player.rotation = " + Math.round(player.rotation), 10, 110, 200, 200);
-  text("player.x = " + Math.round(player.x), 10, 160, 200, 200);
-  text("player.y = " + Math.round(player.y), 10, 210, 200, 200);
+  if (debug == 1) {
+    text("player.x.vel = " + Math.round(player.vel.x), 10, 10, 200, 200);
+    text("player.y.vel = " + Math.round(player.vel.y), 10, 60, 200, 200);
+    text("player.rotation = " + Math.round(player.rotation), 10, 110, 200, 200);
+    text("player.x = " + Math.round(player.x), 10, 160, 200, 200);
+    text("player.y = " + Math.round(player.y), 10, 210, 200, 200);
+    text("buttonpressed = " + buttonpressed, 10, 260, 200, 200);
+    // text("player.colliding(ground2) = " + player.colliding(ground2), 10, 310, 200, 200)
+    // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
+    // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
+    // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
+  }
+  text("version 1", windowWidth - 90, 10, 200, 200);
+  text(
+    "github.com/TexanDoomGuy/Bad-Red-Ball-2",
+    windowWidth - 390,
+    60,
+    200,
+    200
+  );
+  text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
   text("Time: " + timerValue, windowWidth / 2, 20);
-  text("buttonpressed = " + buttonpressed, 10, 260, 200, 200);
-  // text("player.colliding(ground2) = " + player.colliding(ground2), 10, 310, 200, 200)
-  // text("player.colliding(ground3) = " + player.colliding(ground3), 10, 360, 200, 200)
-  // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
-  // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
-  text("version beta 6.1", windowWidth - 150, 10, 200, 200);
   if (leveldone == 1) {
     let c = color(0, 0, 0);
     fill(c);
@@ -548,14 +561,6 @@ function draw() {
     text("Par: " + par, windowWidth / 2, windowHeight / 2 + 140);
     text(currentlevel + " completed!", windowWidth / 2, windowHeight / 2);
   }
-  text(
-    "github.com/TexanDoomGuy/Bad-Red-Ball-2",
-    windowWidth - 390,
-    60,
-    200,
-    200
-  );
-  text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
 }
 
 function timeIt() {
