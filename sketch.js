@@ -279,6 +279,7 @@ function level3() {
     ground6.remove();
     ground7.remove();
     ground8.remove();
+    finish1.remove();
     ground9.remove();
     ground4 = new Sprite([
       [700, 600],
