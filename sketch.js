@@ -24,6 +24,7 @@ var deadlythingexists = 0;
 var timerValue = 0;
 var leveldone = 0;
 var buttonexists = 0;
+var skillissue = 0;
 var intermissionSprExists = 0;
 var par;
 var deadlythingmovingup = 0;
@@ -227,6 +228,9 @@ function level1() {
 function level2() {
   timerValue = 0;
   par = 6;
+  if (skillissue == 1) {
+    gitgud.remove();
+  }
   makebutton();
   console.log("Loading Level2!");
   if (currentlevel == "Level1") {
@@ -305,8 +309,27 @@ function level3() {
     currentlevel = "Level3";
   }
 }
-/* mabye a coin at 1745 300
-ground = ground
+function level4() {
+  timerValue = 0;
+  console.log("Loading level4");
+  if (currentlevel == "Level3") {
+    currentlevel = "Level4";
+    deadlything.remove();
+    deadlythingexists = 0;
+    ground4.remove();
+    ground.y = 500;
+    ground4 = new Sprite(700, 594, [25, 10, 14]);
+    ground4.collider = "static";
+    ground4.rotation = 35;
+    ground2 = new Sprite(-100, 394, [-25, -10, 14]);
+    ground2.collider = "static";
+    a = -35;
+    finish1.x = 100;
+    finish1.y = 300;
+    par = 4;
+  }
+}
+/*ground = ground
 ground2 = cool jump surface (ground)
 ground3 = ground
 ground4 = cool surface (ground)
@@ -314,7 +337,7 @@ ground5 = ground
 ground6 = barrier
 ground7 = barrier
 ground8 = cool surface (ground)
- ground9 = barrier */
+ground9 = barrier */
 
 function intermission() {
   leveldone = 1;
@@ -549,21 +572,25 @@ function keyPressed() {
       level2();
     } else if (currentlevel == "Level2") {
       level3();
+    } else if (currentlevel == "Level2") {
+      level3();
+    } else if (currentlevel == "Level3") {
+      level4();
     }
   }
-    if (keyCode == 87) {
-      if (currentlevel == "Level1") {
-        var skillissue = 1;
-        //Zoe sucked and needs help
-        // ALL NEW GAME JOURNALIST MODE
-        gitgud = new Sprite();
-        gitgud.x = 200;
-        gitgud.y = 420;
-        gitgud.img = gjm;
-        gitgud.collider = "none";
-      }
+  if (keyCode == 87) {
+    if (currentlevel == "Level1") {
+      skillissue = 1;
+      //Zoe sucked and needs help
+      // ALL NEW GAME JOURNALIST MODE
+      gitgud = new Sprite();
+      gitgud.x = 200;
+      gitgud.y = 420;
+      gitgud.img = gjm;
+      gitgud.collider = "none";
     }
   }
+}
 // ground = ground
 // ground2 = cool surface (ground)
 // ground3 = ground
