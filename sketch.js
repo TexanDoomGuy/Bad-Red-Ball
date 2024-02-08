@@ -33,11 +33,19 @@ var deadlythingmovingup = 0;
 var buttonpressed = 0;
 let gjm;
 let deadlything;
+
 var groundP1x;
 var groundP2x;
 var groundP1y;
 var groundP2y;
-var GP1 = false;
+var GP1 = 3;
+
+var ground2P1x;
+var ground2P2x;
+var ground2P1y;
+var ground2P2y;
+var GP2 = 3;
+
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = "pressarrowkeystomove.png";
@@ -578,19 +586,62 @@ function timeIt() {
 function mousePressed() {
   if (levelEditer == true) {
     if (GP1 == true) {
-      groundP2x = mouse.x - 3000;
-      groundP2y = mouse.y - 3000;
-      console.log("Point 2 x= ", mouse.x - 3000);
-      console.log("Point 2 y= ", mouse.y - 3000);
-      GP1 == 2;
+      groundP2x = Math.round(mouse.x - 3000);
+      groundP2y = Math.round(mouse.y - 3000);
+      console.log("Point 2 x= ", groundP2x);
+      console.log("Point 2 y= ", groundP2y);
+      GP1 = 2;
     } else if (GP1 == false) {
-      groundP1x = mouse.x - 3000;
-      groundP1y = mouse.y - 3000;
-      console.log("Point 1 x= ", mouse.x - 3000);
-      console.log("Point 1 y= ", mouse.y - 3000);
+      groundP1x = Math.round(mouse.x - 3000);
+      groundP1y = Math.round(mouse.y - 3000);
+      console.log("Point 1 x= ", groundP1x);
+      console.log("Point 1 y= ", groundP1y);
       GP1 = true;
     } else if (GP1 == 2) {
-      console.log;
+      console.log(
+        "ground.remove()\nground = new Sprite([[" +
+          groundP1x +
+          "," +
+          groundP1y +
+          "]," +
+          "[" +
+          groundP2x +
+          "," +
+          groundP2y +
+          "]])\n ground.collider = " +
+          "'static'"
+      );
+      console.log("ground.x = ground.x + 3000;\nground.y = ground.y + 3000");
+    }
+    if (GP2 == true) {
+      ground2P2x = Math.round(mouse.x - 3000);
+      ground2P2y = Math.round(mouse.y - 3000);
+      console.log("Point 2 x= ", ground2P2x);
+      console.log("Point 2 y= ", ground2P2y);
+      GP2 = 2;
+    } else if (GP2 == false) {
+      ground2P1x = Math.round(mouse.x - 3000);
+      ground2P1y = Math.round(mouse.y - 3000);
+      console.log("Point 1 x= ", ground2P1x);
+      console.log("Point 1 y= ", ground2P1y);
+      GP2 = true;
+    } else if (GP2 == 2) {
+      console.log(
+        "ground2.remove()\nground2 = new Sprite([[" +
+          ground2P1x +
+          "," +
+          ground2P1y +
+          "]," +
+          "[" +
+          ground2P2x +
+          "," +
+          ground2P2y +
+          "]])\n ground2.collider = " +
+          "'static'"
+      );
+      console.log(
+        "ground2.x = ground2.x + 3000;\nground2.y = ground2.y + 3000"
+      );
     }
   }
 }
@@ -622,6 +673,7 @@ function keyPressed() {
     }
   }
   if (keyCode == 80) {
+    console.log(" LEVEL EDITER ACTIVE. DEV USE ONLY");
     levelEditer = true;
     startPos = new Sprite();
     startPos.x = 3300;
