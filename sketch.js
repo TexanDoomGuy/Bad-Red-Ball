@@ -13,6 +13,7 @@ let img3;
 var debug = 0;
 let img4;
 let img5;
+var levelEditer = false;
 let ground5;
 var peepee;
 var currentlevel;
@@ -32,6 +33,9 @@ var deadlythingmovingup = 0;
 var buttonpressed = 0;
 let gjm;
 let deadlything;
+var groundP1;
+var groundP2;
+var GP1 = false;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
   img2 = "pressarrowkeystomove.png";
@@ -487,9 +491,6 @@ function draw() {
       player.vel.x = player.vel.x - 0.4;
     }
   }
-  if (kb.pressing("space")) {
-    player.moveTowards(mouse);
-  }
   if (kb.pressing("z")) {
     if (currentlevel == "Level 1") {
       if (player.colliding(ground8) >= 1) {
@@ -561,11 +562,27 @@ function draw() {
     text("Par: " + par, windowWidth / 2, windowHeight / 2 + 140);
     text(currentlevel + " completed!", windowWidth / 2, windowHeight / 2);
   }
+  if (levelEditer == true) {
+    camera.x = 3300;
+    camera.y = 3600;
+  }
 }
 
 function timeIt() {
   if ((timerValue >= 0) & (leveldone == 0)) {
     timerValue++;
+  }
+}
+function mousePressed() {
+  if (levelEditer == true) {
+    if (GP1 == true) {
+      console.log("Point 2 x= ", mouse.x - 3000);
+      console.log("Point 2 y= ", mouse.y - 3000);
+    } else if (GP1 == false) {
+      console.log("Point 1 x= ", mouse.x - 3000);
+      console.log("Point 1 y= ", mouse.y - 3000);
+      GP1 = true;
+    }
   }
 }
 
@@ -594,6 +611,14 @@ function keyPressed() {
       gitgud.img = gjm;
       gitgud.collider = "none";
     }
+  }
+  if (keyCode == 80) {
+    levelEditer = true;
+    startPos = new Sprite();
+    startPos.x = 3300;
+    startPos.y = 3600;
+    startPos.collider = "none";
+    startPos.diameter = 10;
   }
 }
 // ground = ground
