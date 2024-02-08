@@ -33,8 +33,10 @@ var deadlythingmovingup = 0;
 var buttonpressed = 0;
 let gjm;
 let deadlything;
-var groundP1;
-var groundP2;
+var groundP1x;
+var groundP2x;
+var groundP1y;
+var groundP2y;
 var GP1 = false;
 function preload() {
   img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
@@ -576,12 +578,19 @@ function timeIt() {
 function mousePressed() {
   if (levelEditer == true) {
     if (GP1 == true) {
+      groundP2x = mouse.x - 3000;
+      groundP2y = mouse.y - 3000;
       console.log("Point 2 x= ", mouse.x - 3000);
       console.log("Point 2 y= ", mouse.y - 3000);
+      GP1 == 2;
     } else if (GP1 == false) {
+      groundP1x = mouse.x - 3000;
+      groundP1y = mouse.y - 3000;
       console.log("Point 1 x= ", mouse.x - 3000);
       console.log("Point 1 y= ", mouse.y - 3000);
       GP1 = true;
+    } else if (GP1 == 2) {
+      console.log;
     }
   }
 }
