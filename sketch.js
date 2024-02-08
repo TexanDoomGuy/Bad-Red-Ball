@@ -47,7 +47,7 @@ var ground2P2y;
 var GP2 = 3;
 
 function preload() {
-  img = loadImage("4daca85b-2c06-4d53-a399-2a582590480c.png");
+  img = loadImage("Face2.png");
   img2 = "pressarrowkeystomove.png";
   img3 = "pressspace.png";
   img4 = "tutorial1.png";
@@ -546,7 +546,7 @@ function draw() {
     // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
     // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
   }
-  text("version 1", windowWidth - 90, 10, 200, 200);
+  text("version 2.1", windowWidth - 90, 10, 200, 200);
   text(
     "github.com/TexanDoomGuy/Bad-Red-Ball-2",
     windowWidth - 390,
@@ -554,6 +554,7 @@ function draw() {
     200,
     200
   );
+  text("Press h for the readme", windowWidth - 210, 160, 400, 200);
   text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
   text("Time: " + timerValue, windowWidth / 2, 20);
   if (leveldone == 1) {
@@ -680,6 +681,11 @@ function keyPressed() {
     startPos.y = 3600;
     startPos.collider = "none";
     startPos.diameter = 10;
+  }
+  if (keyCode == 72) {
+    window.open(
+      "https://github.com/TexanDoomGuy/Bad-Red-Ball-2/blob/main/README.md"
+    );
   }
 }
 // ground = ground
