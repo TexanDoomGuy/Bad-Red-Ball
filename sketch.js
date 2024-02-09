@@ -597,7 +597,7 @@ function draw() {
     // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
     // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
   }
-  text("version 2.1", windowWidth - 100, 10, 200, 200);
+  text("version 3", windowWidth - 100, 10, 200, 200);
   if (
     (location.hostname != "texandoomguy.github.io") &
     (location.hostname != "uploads.ungrounded.net")
