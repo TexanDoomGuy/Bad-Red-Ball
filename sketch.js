@@ -570,7 +570,7 @@ function draw() {
       200,
       200
     );
-  } else if (location.hostname == uploads.ungrounded.net) {
+  } else if (location.hostname == "uploads.ungrounded.net") {
     text("Newgrounds version", windowWidth - 100, 60, 200, 200);
   }
   text("Press h for the readme", windowWidth - 210, 160, 400, 200);
