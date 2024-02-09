@@ -21,3 +21,6 @@ It's not meant to be used by yall, but heres how to do it anyways.
 6. Run both printed lines to preview.
 
 This is complicated because you're not supposed to use it.
+
+Newgrounds version
+https://www.newgrounds.com/portal/view/917245
