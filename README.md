@@ -11,7 +11,7 @@ Everything else is ground.
 Made for a school project with 600 lines of unreadable code without comments.
 
 There's also a level editor by pressing p
-It's not meant to be used by yall, but heres how to do it.
+It's not meant to be used by yall, but heres how to do it anyways.
 
 1. Open your browser's dev tools and open the console
 2. Press p while in game
@@ -20,4 +20,7 @@ It's not meant to be used by yall, but heres how to do it.
 5. Then click again to print the code that makes a line to console.
 6. Run both printed lines to preview.
 
-This is complicated because you're not suppost to use it.
+This is complicated because you're not supposed to use it.
+
+Newgrounds version
+https://www.newgrounds.com/portal/view/917245

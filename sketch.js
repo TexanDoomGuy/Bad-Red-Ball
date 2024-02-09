@@ -46,6 +46,18 @@ var ground2P1y;
 var ground2P2y;
 var GP2 = 3;
 
+console.log("You're running on" + location.hostname);
+if (location.hostname == "uploads.ungrounded.net") {
+  console.log("Hello Newgrounds!");
+  onNewgrounds = 1;
+} else if (
+  (location.hostname != "texandoomguy.github.io") &
+  (location.hostname != "uploads.ungrounded.net")
+) {
+  console.log(
+    "Uhh, this is not the original site. GO TO https://texandoomguy.github.io/Bad-Red-Ball-2/"
+  );
+}
 function preload() {
   img = loadImage("Face2.png");
   img2 = "pressarrowkeystomove.png";
@@ -546,14 +558,22 @@ function draw() {
     // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
     // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
   }
-  text("version 2.1", windowWidth - 90, 10, 200, 200);
-  text(
-    "github.com/TexanDoomGuy/Bad-Red-Ball-2",
-    windowWidth - 390,
-    60,
-    200,
-    200
-  );
+  text("version 2.1", windowWidth - 100, 10, 200, 200);
+  if (
+    (location.hostname != "texandoomguy.github.io") &
+    (location.hostname != "uploads.ungrounded.net")
+  ) {
+    text(
+      "github.com/TexanDoomGuy/Bad-Red-Ball-2",
+      //"Newgrounds version",
+      windowWidth - 390,
+      60,
+      200,
+      200
+    );
+  } else if (location.hostname == "uploads.ungrounded.net") {
+    text("Newgrounds version", windowWidth - 185, 60, 200, 200);
+  }
   text("Press h for the readme", windowWidth - 210, 160, 400, 200);
   text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
   text("Time: " + timerValue, windowWidth / 2, 20);
