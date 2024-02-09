@@ -45,7 +45,6 @@ var ground2P2x;
 var ground2P1y;
 var ground2P2y;
 var GP2 = 3;
-var onNewgrounds;
 
 console.log("You're running on" + location.hostname);
 if (location.hostname == "uploads.ungrounded.net") {
