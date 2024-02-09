@@ -356,6 +356,41 @@ function level4() {
     par = 4;
   }
 }
+function level5() {
+  timerValue = 0;
+  console.log("Loading level5");
+  if (currentlevel == "Level4") {
+    ground4.remove();
+    currentlevel = "Level5";
+    ground2.remove();
+    ground.remove();
+    ground2 = new Sprite([
+      [100, 700],
+      [100, 400],
+    ]);
+    ground2.collider = "static";
+    a = 0;
+    ground6 = new Sprite([
+      [600, 700],
+      [600, 400],
+      [650, 400],
+    ]);
+    finish1.x = 50;
+    finish1.y = 100;
+    ground6.collider = "static";
+    ground4 = new Sprite([
+      [650, 400],
+      [650, 100],
+    ]);
+    ground4.collider = "static";
+    ground7 = new Sprite([
+      [100, 400],
+      [100, 100],
+      [50, 100],
+    ]);
+    ground7.collider = "static";
+  }
+}
 /*ground = ground
 ground2 = cool jump surface (ground)
 ground3 = ground
@@ -380,6 +415,10 @@ function intermission() {
         level3();
       } else if (currentlevel == "Level3") {
         level4();
+      } else if (currentlevel == "Level4") {
+        level5();
+      } else if (currentlevel == "Level5") {
+        console.log("this is the end, I guess.");
       }
       player.y = 600;
       player.x = 300;
@@ -497,7 +536,7 @@ function draw() {
   ground2.color = "RGB(0,0,255)";
   ground3.color = "RGB(0,255,0)";
   ground4.color = "RGB(0,0,255)";
-  ground5.color = "RGB(255,255,0)";
+  ground5.color = "RGB(0,255,0)";
   ground6.color = "RGB(255,0,0)";
   ground7.color = "RGB(255,0,0)";
   finish1.color = "RGB(136, 38, 255)";
@@ -592,6 +631,13 @@ function draw() {
     );
     text("Par: " + par, windowWidth / 2, windowHeight / 2 + 140);
     text(currentlevel + " completed!", windowWidth / 2, windowHeight / 2);
+    if (currentlevel == "Level5") {
+      text(
+        "This is the last level. I'll add more later!",
+        windowWidth / 2,
+        windowHeight / 2 + 210
+      );
+    }
   }
   if (levelEditer == true) {
     camera.x = 3300;
@@ -691,6 +737,13 @@ function keyPressed() {
       gitgud.y = 420;
       gitgud.img = gjm;
       gitgud.collider = "none";
+    }
+    if (debug == 1) {
+      level1();
+      level2();
+      level3();
+      level4();
+      level5();
     }
   }
   if (keyCode == 80) {
