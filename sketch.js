@@ -565,13 +565,14 @@ function draw() {
   ) {
     text(
       "github.com/TexanDoomGuy/Bad-Red-Ball-2",
+      //"Newgrounds version",
       windowWidth - 390,
       60,
       200,
       200
     );
   } else if (location.hostname == "uploads.ungrounded.net") {
-    text("Newgrounds version", windowWidth - 100, 60, 200, 200);
+    text("Newgrounds version", windowWidth - 185, 60, 200, 200);
   }
   text("Press h for the readme", windowWidth - 210, 160, 400, 200);
   text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
