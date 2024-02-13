@@ -2,7 +2,8 @@ This is a bad red ball clone in p5js, using p5play.
 
 ![download (1)](https://github.com/TexanDoomGuy/Bad-Red-Ball-2/assets/86894317/dddc9490-c3bd-4293-a2c1-27730adad63c)
 
-Press w for game journalist mode (only on level 1).
+Press w for game journalist mode (only on level 1)
+
 level 5 is the last level.
 
 Purple is the finish line.
@@ -10,6 +11,9 @@ Red are barriers.
 Everything else is ground.
 
 Made for a school project with 900 lines of unreadable and code without comments.
+
+debug = 1 in console to turn debug mode on.
+debug mode just displays random crap I need to see when making the game.
 
 There's also a level editor by pressing p
 It's not meant to be used by yall, but heres how to do it anyways.

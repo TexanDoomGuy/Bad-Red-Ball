@@ -10,7 +10,7 @@ let img2;
 var skillissue = 0;
 let follower;
 let img3;
-var debug = 1;
+var debug = 0;
 let img4;
 let img5;
 var levelEditer = false;
