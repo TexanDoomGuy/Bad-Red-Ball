@@ -706,15 +706,17 @@ function draw() {
       "github.com/TexanDoomGuy/Bad-Red-Ball-2",
       //"Newgrounds version",
       windowWidth - 390,
-      60,
+      windowHeight - 20,
       200,
       200
     );
   } else if (location.hostname == "uploads.ungrounded.net") {
-    text("Newgrounds version", windowWidth - 185, 60, 200, 200);
+    text("Newgrounds version", windowWidth - 185, windowHeight - 20, 200, 200);
   }
+  let fps = frameRate();
+  text("FPS: " + Math.round(fps), windowWidth - 80, 110, 400, 200);
   text("Press h for the readme", windowWidth - 210, 160, 400, 200);
-  text("Level: " + currentlevel, windowWidth - 130, 110, 200, 200);
+  text("Level: " + currentlevel, windowWidth - 130, 60, 200, 200);
   text("Time: " + timerValue, windowWidth / 2, 20);
   if (leveldone == 1) {
     let c = color(0, 0, 0);
