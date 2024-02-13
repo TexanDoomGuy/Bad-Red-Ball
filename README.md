@@ -9,7 +9,7 @@ Purple is the finish line.
 Red are barriers.
 Everything else is ground.
 
-Made for a school project with 800 lines of unreadable code without comments.
+Made for a school project with 900 lines of unreadable and code without comments.
 
 There's also a level editor by pressing p
 It's not meant to be used by yall, but heres how to do it anyways.

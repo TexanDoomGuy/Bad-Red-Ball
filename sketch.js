@@ -10,12 +10,13 @@ let img2;
 var skillissue = 0;
 let follower;
 let img3;
-var debug = 0;
+var debug = 1;
 let img4;
 let img5;
 var levelEditer = false;
 let ground5;
 var peepee;
+var portalexists;
 var currentlevel;
 let arrow;
 var b;
@@ -67,6 +68,11 @@ function preload() {
   img6 = "arrow.png";
   gjm = "gjmarrowl1.png";
   img7 = "tutorial2.png";
+
+  antiGravPortalRight = "gravity portal anti 2.png";
+  antiGravPortalLeft = "gravity portal anti 1.png";
+  gravPortalRight = "gravity portal 2.png";
+  gravPortalLeft = "gravity portal 1.png";
 }
 console.log("///////");
 console.log("loading");
@@ -399,6 +405,59 @@ function level5() {
     ground9.color = "RGB(255,0,0)";
   }
 }
+function level6() {
+  timerValue = 0;
+  console.log("Loading level6");
+  if (currentlevel == "Level5") {
+    currentlevel = "Level6";
+    portalexists = 1;
+    ground = new Sprite([
+      [100, 375],
+      [600, 375],
+    ]);
+    ground.collider = "static";
+
+    //try not to make yandere dev code challange (IMPOSSIBLE)
+    antiGravityPortal_right = new Sprite();
+    antiGravityPortal_right.img = antiGravPortalRight;
+    antiGravityPortal_right.collider = "none";
+    antiGravityPortal_right.x = 250;
+    antiGravityPortal_right.y = 625;
+    antiGravityPortal_right.scale = 0.75;
+    antiGravityPortal_right.rotation = -90;
+
+    antiGravityPortal_left = new Sprite();
+    antiGravityPortal_left.img = antiGravPortalLeft;
+    antiGravityPortal_left.collider = "none";
+    antiGravityPortal_left.x = 250;
+    antiGravityPortal_left.y = 625;
+    antiGravityPortal_left.scale = 0.75;
+    antiGravityPortal_left.rotation = -90;
+
+    player.layer = 2;
+    antiGravityPortal_left.layer = 1;
+    antiGravityPortal_right.layer = 3;
+
+    GravityPortal_right = new Sprite();
+    GravityPortal_right.img = gravPortalRight;
+    GravityPortal_right.collider = "none";
+    GravityPortal_right.x = 250;
+    GravityPortal_right.y = 425;
+    GravityPortal_right.scale = 0.75;
+    GravityPortal_right.rotation = -90;
+
+    GravityPortal_left = new Sprite();
+    GravityPortal_left.img = gravPortalLeft;
+    GravityPortal_left.collider = "none";
+    GravityPortal_left.x = 250;
+    GravityPortal_left.y = 425;
+    GravityPortal_left.scale = 0.75;
+    GravityPortal_left.rotation = -90;
+
+    GravityPortal_left.layer = 1;
+    GravityPortal_right.layer = 3;
+  }
+}
 /*ground = ground
 ground2 = cool jump surface (ground)
 ground3 = ground
@@ -543,7 +602,13 @@ function draw() {
   }
   ground2.rotation = a;
   background("rgb(99,99,99)");
-
+  if (portalexists == 1) {
+    if (antiGravityPortal_right.overlaps(player) == true) {
+      world.gravity.y = -10;
+    } else if (GravityPortal_right.overlaps(player) == true) {
+      world.gravity.y = 10;
+    }
+  }
   colorMode(RGB, 255);
   ground.color = "RGB(0,255,0)";
   ground2.color = "RGB(0,0,255)";
@@ -569,18 +634,36 @@ function draw() {
     if (currentlevel == "Level 1") {
       if (player.colliding(ground8) >= 1) {
         player.vel.y = -5;
+        if (world.gravity.y == -10) {
+          player.vel.y = 5;
+        }
       }
     }
     if (player.colliding(ground) >= 1) {
       player.vel.y = -5;
+      if (world.gravity.y == -10) {
+        player.vel.y = 5;
+      }
     } else if (player.colliding(ground2) >= 1) {
       player.vel.y = -5;
+      if (world.gravity.y == -10) {
+        player.vel.y = 5;
+      }
     } else if (player.colliding(ground3) >= 1) {
       player.vel.y = -5;
+      if (world.gravity.y == -10) {
+        player.vel.y = 5;
+      }
     } else if (player.colliding(ground4) >= 1) {
       player.vel.y = -5;
+      if (world.gravity.y == -10) {
+        player.vel.y = 5;
+      }
     } else if (player.colliding(ground5) >= 1) {
       player.vel.y = -5;
+      if (world.gravity.y == -10) {
+        player.vel.y = 5;
+      }
     }
     if ((player.vel.y < 0.001) & (player.vel.y > 0.01)) {
       player.vel.t = 0.4;
@@ -610,10 +693,14 @@ function draw() {
     // text("player.colliding(ground4) = " + player.colliding(ground4), 10, 410, 200, 200)
     // text("player.colliding(ground5) = " + player.colliding(ground5), 10, 460, 200, 200)
   }
-  text("version 3", windowWidth - 100, 10, 200, 200);
+  text("version 4", windowWidth - 100, 10, 200, 200);
+  if (portalexists == 1) {
+    text("test:" + antiGravityPortal_right.overlaps(player), 10, 310, 200, 200);
+  }
   if (
     (location.hostname != "texandoomguy.github.io") &
-    (location.hostname != "uploads.ungrounded.net")
+    (location.hostname != "uploads.ungrounded.net") &
+    (location.hostname != "127.0.0.1")
   ) {
     text(
       "github.com/TexanDoomGuy/Bad-Red-Ball-2",
@@ -750,6 +837,8 @@ function keyPressed() {
       level4();
     } else if (currentlevel == "Level4") {
       level5();
+    } else if (currentlevel == "Level5") {
+      level6();
     }
   }
   if (keyCode == 87) {
@@ -769,6 +858,7 @@ function keyPressed() {
       level3();
       level4();
       level5();
+      level6();
     }
   }
   if (keyCode == 80) {
