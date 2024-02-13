@@ -66,6 +66,7 @@ function preload() {
   img5 = "slidin2.png";
   img6 = "arrow.png";
   gjm = "gjmarrowl1.png";
+  img7 = "tutorial2.png";
 }
 console.log("///////");
 console.log("loading");
@@ -198,6 +199,7 @@ function level1() {
   par = 5;
   if ((currentlevel = "Tutorial")) {
     console.log("Loading level 1!");
+    finishtut.remove();
     player.y = 600;
     player.x = 300;
     //console.log("Todo, finish level 1"); i finished level 1
@@ -389,6 +391,12 @@ function level5() {
       [50, 100],
     ]);
     ground7.collider = "static";
+    ground9 = new Sprite([
+      [650, 100],
+      [650, -200],
+    ]);
+    ground9.collider = "static";
+    ground9.color = "RGB(255,0,0)";
   }
 }
 /*ground = ground
@@ -524,6 +532,11 @@ function draw() {
   if ((player.x > 1000) & (peepee != true)) {
     ground7.remove();
     ground6.remove();
+    finishtut = new Sprite();
+    finishtut.img = img7;
+    finishtut.collider = "none";
+    finishtut.x = 0;
+    finishtut.y = 375;
     peepee = true;
     a = 90;
     ground2.y = 600;
@@ -716,6 +729,16 @@ function mousePressed() {
 function keyPressed() {
   if (keyCode == 81) {
     if (currentlevel == "Tutorial") {
+      ground7.remove();
+      ground6.remove();
+      finishtut = new Sprite();
+      finishtut.img = img7;
+      finishtut.collider = "none";
+      finishtut.x = 0;
+      finishtut.y = 375;
+      peepee = true;
+      a = 90;
+      ground2.y = 600;
       level1();
     } else if (currentlevel == "Level1") {
       level2();
@@ -725,6 +748,8 @@ function keyPressed() {
       level3();
     } else if (currentlevel == "Level3") {
       level4();
+    } else if (currentlevel == "Level4") {
+      level5();
     }
   }
   if (keyCode == 87) {
