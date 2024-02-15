@@ -52,11 +52,11 @@ if (location.hostname == "uploads.ungrounded.net") {
   console.log("Hello Newgrounds!");
   onNewgrounds = 1;
 } else if (
-  (location.hostname != "texandoomguy.github.io") &
+  (location.hostname != "www.texandoomguy.com") &
   (location.hostname != "uploads.ungrounded.net")
 ) {
   console.log(
-    "Uhh, this is not the original site. GO TO https://texandoomguy.github.io/Bad-Red-Ball-2/"
+    "Uhh, this is not the original site. GO TO www.texandoomguy.com/"
   );
 }
 function preload() {
@@ -699,7 +699,7 @@ function draw() {
     text("test:" + antiGravityPortal_right.overlaps(player), 10, 310, 200, 200);
   }
   if (
-    (location.hostname != "texandoomguy.com") &
+    (location.hostname != "www.texandoomguy.com") &
     (location.hostname != "uploads.ungrounded.net") &
     (location.hostname != "127.0.0.1")
   ) {
