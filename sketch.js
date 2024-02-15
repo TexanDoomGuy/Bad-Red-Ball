@@ -367,6 +367,7 @@ function level4() {
 function level5() {
   timerValue = 0;
   console.log("Loading level5");
+  par = 5;
   if (currentlevel == "Level4") {
     ground4.remove();
     currentlevel = "Level5";
@@ -698,12 +699,12 @@ function draw() {
     text("test:" + antiGravityPortal_right.overlaps(player), 10, 310, 200, 200);
   }
   if (
-    (location.hostname != "texandoomguy.github.io") &
+    (location.hostname != "texandoomguy.com") &
     (location.hostname != "uploads.ungrounded.net") &
     (location.hostname != "127.0.0.1")
   ) {
     text(
-      "github.com/TexanDoomGuy/Bad-Red-Ball-2",
+      "www.texandoomguy.com",
       //"Newgrounds version",
       windowWidth - 390,
       windowHeight - 20,
@@ -864,7 +865,7 @@ function keyPressed() {
     }
   }
   if (keyCode == 80) {
-    console.log(" LEVEL EDITER ACTIVE. DEV USE ONLY");
+    console.log(" LEVEL EDITER ACTIVE.");
     levelEditer = true;
     startPos = new Sprite();
     startPos.x = 3300;
