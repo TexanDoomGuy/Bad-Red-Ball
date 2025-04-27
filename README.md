@@ -1,6 +1,6 @@
 This is a bad red ball clone in p5js, using p5play.
 
-![download (1)](https://github.com/TexanDoomGuy/Bad-Red-Ball-2/assets/86894317/dddc9490-c3bd-4293-a2c1-27730adad63c)
+![download (1)](https://github.com/TexanDoomGuy/Bad-Red-Ball/assets/86894317/dddc9490-c3bd-4293-a2c1-27730adad63c)
 
 Press w for game journalist mode (only on level 1)
 
@@ -30,4 +30,4 @@ This is complicated because you're not supposed to use it.
 Newgrounds version
 https://www.newgrounds.com/portal/view/917245
 
-![ad](https://github.com/TexanDoomGuy/Bad-Red-Ball-2/assets/86894317/8aa31cca-3e82-4082-b8ea-8f6d3f7baa43)
+![ad](https://github.com/TexanDoomGuy/Bad-Red-Ball/assets/86894317/8aa31cca-3e82-4082-b8ea-8f6d3f7baa43)
