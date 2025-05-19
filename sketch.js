@@ -875,7 +875,7 @@ function keyPressed() {
   }
   if (keyCode == 72) {
     window.open(
-      "https://github.com/TexanDoomGuy/Bad-Red-Ball-2/blob/main/README.md"
+      "https://github.com/TexanDoomGuy/Bad-Red-Ball/blob/main/README.md"
     );
   }
 }
